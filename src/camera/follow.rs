@@ -1,7 +1,6 @@
+use bevy::prelude::{Camera3d, Single, Transform, Vec3, With, Without};
+
 use crate::sailing::boat::Boat;
-use bevy::camera::Camera3d;
-use bevy::math::Vec3;
-use bevy::prelude::{Single, Transform, With, Without};
 
 const OFFSET: Vec3 = Vec3::new(0.0, 4.0, 14.0);
 

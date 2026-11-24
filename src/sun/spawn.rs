@@ -1,6 +1,4 @@
-use bevy::light::DirectionalLight;
-use bevy::math::Vec3;
-use bevy::prelude::{Commands, Transform};
+use bevy::prelude::{Commands, DirectionalLight, Transform, Vec3};
 
 pub fn spawn_sun(mut commands: Commands) {
   commands.spawn((

@@ -1,9 +1,7 @@
-use bevy::app::{App, Plugin, Startup, Update};
-use bevy::camera::ClearColor;
-use bevy::color::Color;
-
 mod follow;
 mod spawn;
+
+use bevy::prelude::{App, ClearColor, Color, Plugin, Startup, Update};
 
 pub struct CameraPlugin;
 

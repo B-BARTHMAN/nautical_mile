@@ -1,8 +1,9 @@
+pub mod apparent;
 pub mod state;
 
+use bevy::prelude::{App, Plugin, Vec3};
+
 use crate::wind::state::Wind;
-use bevy::app::App;
-use bevy::prelude::{Plugin, Vec3};
 
 pub struct WindPlugin;
 

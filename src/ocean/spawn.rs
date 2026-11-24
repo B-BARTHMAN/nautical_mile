@@ -1,4 +1,7 @@
-use bevy::prelude::*;
+use bevy::prelude::{
+  Assets, Color, Commands, Mesh, Mesh3d, MeshMaterial3d, Meshable, Plane3d, ResMut,
+  StandardMaterial, default,
+};
 
 pub fn spawn_ocean(
   mut commands: Commands,

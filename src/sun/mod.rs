@@ -1,6 +1,6 @@
 mod spawn;
 
-use bevy::app::{App, Plugin, Startup};
+use bevy::prelude::{App, Plugin, Startup};
 
 pub struct SunPlugin;
 

@@ -33,14 +33,15 @@ Full answers to the design questionnaire: https://claude.ai/artifact/YMfjJVWrNGG
 - Feature-first modules (`sailing/`, `wind/`, `ocean/`, `islands/`, …), one Bevy `Plugin` per feature.
 - Small files, one responsibility each. Each system does exactly one job.
 - As little coupling as possible. Shared things are pulled into their own module; no dependency cycles (A → B → C → A is forbidden).
-- Simulation math is engine-agnostic: a `physics` module that never imports Bevy (only `glam`). Bevy systems wrap it. Can become its own crate later.
-- Physics model: forces applied at points on a rigid body (sail forces on the mast, keel/rudder as hydrofoils, buoyancy probes). Start with a simple polar curve for sails.
-- Fixed timestep for simulation.
+- Physics uses Avian (`avian3d`) directly: no custom rigid body or separate physics module. Keep it as simple as possible.
+- Physics model: the boat is one Avian rigid body with gravity at its center of mass. Each force is one small system applying force at a point: buoyancy probes, sail (on the mast), keel, rudder. Heeling and turning emerge from these forces. Sail, keel and rudder share one lift/drag foil function, driven by angle of attack to the apparent flow. No polar curve.
+- Physics build order: rigid body + gravity → buoyancy probes → foil + keel → adjustable sail → rudder → real rigging.
+- Fixed timestep for simulation (force systems run in `FixedUpdate`).
 - Few, larger components. Newtypes for units (`Knots(f32)`, `Degrees(f32)`).
 - Constants in code for now. Data files only when they clearly help (e.g. generic fish tables).
 - Error handling: simple and robust. No `unsafe` unless truly needed.
 - Comments: English, concise, only where necessary. Tests only for critical things for now.
-- Crates: minimal. Suggest one with its purpose and wait for approval. Physics crate only for collision. Floating origin only once precision becomes a problem.
+- Crates: minimal. Suggest one with its purpose and wait for approval. Floating origin only once precision becomes a problem.
 
 ## Tooling
 

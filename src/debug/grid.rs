@@ -1,5 +1,6 @@
-use bevy::prelude::{Gizmos, Gray, Isometry3d, LinearRgba, Quat, UVec2, Vec2, Vec3};
 use std::f32::consts::FRAC_PI_2;
+
+use bevy::prelude::{Gizmos, Gray, Isometry3d, LinearRgba, Quat, UVec2, Vec2, Vec3};
 
 pub fn draw_grid(mut gizmos: Gizmos) {
   gizmos.grid(

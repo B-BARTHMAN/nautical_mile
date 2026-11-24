@@ -1,6 +1,8 @@
-use bevy::app::{App, Plugin, Startup};
-
+pub mod height;
 mod spawn;
+
+use bevy::prelude::{App, Plugin, Startup};
+
 pub struct OceanPlugin;
 
 impl Plugin for OceanPlugin {

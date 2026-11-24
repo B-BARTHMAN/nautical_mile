@@ -1,19 +1,14 @@
 pub mod boat;
-mod movement;
+pub mod buoyancy;
 mod spawn;
-mod steering;
 
-use bevy::app::{App, FixedUpdate, Plugin, Startup};
-use bevy::prelude::IntoScheduleConfigs;
+use bevy::prelude::{App, FixedUpdate, Plugin, Startup};
 
 pub struct SailingPlugin;
 
 impl Plugin for SailingPlugin {
   fn build(&self, app: &mut App) {
     app.add_systems(Startup, spawn::spawn_boat);
-    app.add_systems(
-      FixedUpdate,
-      (steering::steer_boat, movement::move_boat).chain(),
-    );
+    app.add_systems(FixedUpdate, buoyancy::apply_buoyancy);
   }
 }

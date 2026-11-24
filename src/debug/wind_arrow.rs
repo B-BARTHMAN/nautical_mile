@@ -1,6 +1,7 @@
+use bevy::prelude::{Gizmos, LinearRgba, Res, Single, Transform, Vec3, With};
+
 use crate::sailing::boat::Boat;
 use crate::wind::state::Wind;
-use bevy::prelude::{Gizmos, LinearRgba, Res, Single, Transform, Vec3, With};
 
 pub fn draw_wind(mut gizmos: Gizmos, wind: Res<Wind>, boat: Single<&Transform, With<Boat>>) {
   let start = boat.translation + Vec3::Y * 4.0;

@@ -1,23 +1,28 @@
+use avian3d::prelude::{Collider, Mass, RigidBody};
+use bevy::prelude::{
+  Assets, Color, Commands, Cuboid, Mesh, Mesh3d, MeshMaterial3d, ResMut, StandardMaterial,
+  Transform,
+};
+
 use crate::sailing::boat::Boat;
-use bevy::asset::Assets;
-use bevy::color::Color;
-use bevy::mesh::{Mesh, Mesh3d};
-use bevy::pbr::{MeshMaterial3d, StandardMaterial};
-use bevy::prelude::{Commands, ResMut, Transform};
-use bevy::shape::Cuboid;
+use crate::sailing::buoyancy::box_probes;
 
 pub fn spawn_boat(
   mut commands: Commands,
   mut meshes: ResMut<Assets<Mesh>>,
-  mut material: ResMut<Assets<StandardMaterial>>,
+  mut materials: ResMut<Assets<StandardMaterial>>,
 ) {
   let mesh = meshes.add(Cuboid::new(3.0, 1.5, 9.0));
-  let material = material.add(Color::srgb(0.9, 0.85, 0.75));
+  let material = materials.add(Color::srgb(0.9, 0.85, 0.75));
 
   commands.spawn((
-    Boat::default(),
+    Boat,
+    RigidBody::Dynamic,
+    Mass(4000.0),
+    Collider::cuboid(3.0, 1.5, 9.0),
     Mesh3d(mesh),
     MeshMaterial3d(material),
-    Transform::from_xyz(0.0, 0.25, 0.0),
+    Transform::from_xyz(0.0, 2.0, 0.0),
+    box_probes(),
   ));
 }
